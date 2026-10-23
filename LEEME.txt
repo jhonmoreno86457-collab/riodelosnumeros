@@ -1,0 +1,30 @@
+RÍO DE LOS NÚMEROS · APP PARA EL CELULAR
+========================================
+
+Esta carpeta es la app del juego (versión de estudiantes). Se publica gratis en GitHub Pages.
+NUNCA suba aquí la versión de prueba del docente.
+
+SU REPOSITORIO:        https://github.com/jhonmoreno86457-collab/riodelosnumeros
+DIRECCIÓN DEL JUEGO:   https://jhonmoreno86457-collab.github.io/riodelosnumeros/
+AFICHE CON EL QR:      https://jhonmoreno86457-collab.github.io/riodelosnumeros/afiche.html
+Esa dirección NO se debe cambiar nunca: el avance de los estudiantes queda guardado en ella.
+
+PUBLICAR (una sola vez)
+1. Abra su repositorio y toque el enlace "uploading an existing file".
+2. Arrastre TODOS los archivos de esta carpeta (index.html, sw.js, manifest.webmanifest, afiche.html,
+   LEEME.txt y los 5 íconos). Archivos sueltos: no la carpeta ni el ZIP. Toque "Commit changes".
+3. Vaya a Settings → Pages. En "Branch" escoja "main" y la carpeta "/ (root)". Toque "Save".
+4. Espere 1 o 2 minutos y abra la dirección del juego.
+
+EL AFICHE CON EL CÓDIGO QR
+   Abra la dirección del afiche. El QR se arma solo con la dirección correcta.
+   Toque "Imprimir este afiche" y péguelo junto al internet gratuito.
+
+ACTUALIZAR EL JUEGO MÁS ADELANTE
+   En el repositorio: "Add file" → "Upload files", suba los archivos nuevos (reemplazan a los anteriores)
+   y toque "Commit changes". Cuando los estudiantes abran el juego con internet verán
+   "Hay una versión nueva del juego" → "Actualizar". Su avance NO se pierde.
+
+SI UN ESTUDIANTE YA JUGABA CON EL ARCHIVO SIN INTERNET
+   Que copie su código de avance (Mapa → Mi código de avance) antes de instalar la app.
+   En la app: escribe el MISMO nombre, entra a «Ajustes y copia de seguridad» → «Recuperar avance» y escribe el código.
