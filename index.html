@@ -849,6 +849,17 @@ body.still .cx-boat-in,body.still .cx-paddle,body.still .cx-wave,body.still .cx-
 .cx-signbox.sik b{font-size:calc(var(--ph, 210px) * .4)}
 .cx-signbox .sik-play{font-style:normal;background:#111;color:#fff;border-radius:999px;padding:4px 12px 3px;font-size:.82rem;font-weight:800;box-shadow:2px 2px 0 rgba(0,0,0,.35)}
 
+/* Créditos */
+.credits{text-align:center}
+.credits .cr-sub{margin:4px 0 14px;opacity:.9}
+.cr-block{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;box-sizing:border-box;margin:0 0 14px;padding:12px 10px;border-radius:14px;background:rgba(255,255,255,.07)}
+.cr-k{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.cr-block b{font-family:var(--font-display);font-size:1.15rem}
+.cr-list{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:3px;font-weight:600}
+.cr-year{font-family:var(--font-display);font-size:1.3rem;margin:4px 0 0}
+/* Cámara en el mapa: nivel con foto del río por ganar */
+.node .camb{position:absolute;top:-9px;right:-11px;width:22px;height:22px;display:grid;place-items:center;font-size:.72rem;background:#fff;border:2px solid #111;border-radius:50%;line-height:1;pointer-events:none}
+
 /* ---------- Minijuegos: la respuesta se pesca, se atrapa, se siembra, se reparte o se patea ---------- */
 .arena{
   position:relative;height:clamp(268px, 46vh, 360px);border-radius:22px;overflow:hidden;
@@ -1339,6 +1350,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     <button class="link-btn" id="codeBtn" type="button">Mi código de avance</button>
     <button class="link-btn" id="switchBtn" type="button">Cambiar de jugador</button>
     <button class="link-btn" id="settingsBtn" type="button">Ajustes y copia de seguridad</button>
+    <button class="link-btn" id="creditsBtn" type="button">Créditos</button>
   </section>
 
   <!-- Nivel -->
@@ -1536,6 +1548,35 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
       <img class="cert-img" id="certImg" alt="Certificado del Río de los Números">
       <button class="btn gold big" id="dlBtn" type="button">Descargar imagen</button>
       <p class="hint">Si el botón no la descarga, mantén presionada la imagen y elige «Descargar imagen», o toma una captura de pantalla.</p>
+      <button class="link-btn" id="certCredits" type="button">Ver los créditos del juego</button>
+    </div>
+  </section>
+
+  <!-- Créditos -->
+  <section class="screen" id="credits" hidden>
+    <header class="bar">
+      <button class="back-btn" id="credBack" type="button">‹ Mapa</button>
+      <span class="lvl-tag" style="color:var(--gold)">Créditos</span>
+    </header>
+    <div class="panel center credits">
+      <h2 class="postal-title">Río de los Números</h2>
+      <p class="cr-sub">Un juego de matemáticas por el río, hecho en la Institución Educativa Carpintero, Barrancominas (Guainía).</p>
+      <div class="cr-block"><span class="cr-k">Creador</span><b>Jhon Carlos Moreno Soto</b><span>Biólogo, docente de ciencias</span></div>
+      <div class="cr-block"><span class="cr-k">Textos en sikuani</span><b>Yezenia Horacio Ponare</b><span>Lic. Etnoeducativa y Esp. Gestión Humana</span></div>
+      <div class="cr-block"><span class="cr-k">Voces en sikuani</span><span>Estudiantes de grado décimo de la Institución Educativa Carpintero</span>
+        <ul class="cr-list">
+          <li>Einer Estevan Encizo Gaitán</li>
+          <li>Welzer Yadilson Gaitán Chipiaje</li>
+          <li>Zailen Dilmaris Gaitán Díaz</li>
+          <li>Ronald Bautista Gaitán Piñeros</li>
+          <li>Wildanier García Gaitán</li>
+          <li>Eilen Tatiana Peña Gaitán</li>
+          <li>Danna Carolina Piñeros León</li>
+          <li>Yady Katherine Rodríguez Cabares</li>
+        </ul>
+      </div>
+      <div class="cr-block"><span class="cr-k">Herramienta usada</span><b>Claude</b></div>
+      <p class="cr-year">2026</p>
     </div>
   </section>
 
@@ -1788,10 +1829,10 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
   ];
   var TIME = [null,
     15, 15, 20, 20, 20, 20, 20, 20, 30, 25,
-    15, 15, 20, 20, 20, 20, 20, 25, 30, 25,
+    15, 15, 20, 20, 20, 25, 20, 30, 35, 25,
     15, 15, 15, 20, 20, 20, 25, 25, 30, 25,
-    15, 15, 15, 15, 15, 20, 25, 30, 25, 25,
-    25, 25, 30, 25, 30, 25, 30, 30, 30, 30
+    15, 15, 20, 20, 20, 20, 30, 35, 25, 25,
+    25, 25, 30, 25, 30, 30, 35, 35, 30, 30
   ];
   var G = [null,
     // Suma
@@ -1817,13 +1858,13 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     function(){ var a, b; do { a = R(21, 99); b = R(1, 9); } while (a % 10 < b); return S(a + ' ' + M + ' ' + b, a - b); },
     function(){ var a, b; do { a = R(21, 99); b = R(2, 9); } while (a % 10 >= b); return S(a + ' ' + M + ' ' + b, a - b, [Math.floor(a / 10) * 10 + (b - a % 10)]); },
     function(){ var a, b; do { a = R(30, 99); b = R(10, a - 10); } while (a % 10 < b % 10); return S(a + ' ' + M + ' ' + b, a - b); },
-    function(){ var a, b; do { a = R(30, 99); b = R(12, a - 5); } while (a % 10 >= b % 10); return S(a + ' ' + M + ' ' + b, a - b, [(Math.floor(a / 10) - Math.floor(b / 10)) * 10 + (b % 10 - a % 10)]); },
+    function(){ var a, b; do { a = R(30, 89); b = R(12, a - 5); } while (a % 10 >= b % 10); return S(a + ' ' + M + ' ' + b, a - b, [(Math.floor(a / 10) - Math.floor(b / 10)) * 10 + (b % 10 - a % 10)]); },
     function(){
       if (Math.random() < 0.5){ var a = R(2, 9), b = R(1, a - 1); return S(a * 100 + ' ' + M + ' ' + b * 100, (a - b) * 100, [(a + b) * 100]); }
       var x = R(2, 9) * 100 + R(0, 9) * 10, y = R(1, 9) * 10; return S(x + ' ' + M + ' ' + y, x - y);
     },
-    function(){ var a = R(120, 999), b = R(10, 99); return S(a + ' ' + M + ' ' + b, a - b, [a - b + 10]); },
-    function(){ var a = R(300, 999), b = R(100, a - 50); return S(a + ' ' + M + ' ' + b, a - b, [a - b + 10, a - b + 100]); },
+    function(){ var a = R(120, 699), b = R(10, 99); return S(a + ' ' + M + ' ' + b, a - b, [a - b + 10]); },
+    function(){ var a = R(300, 799), b = R(100, a - 50); return S(a + ' ' + M + ' ' + b, a - b, [a - b + 10, a - b + 100]); },
     function(){ var a = R(20, 99), b = R(5, a - 5), c = a - b; return Math.random() < 0.5 ? Q(a + ' ' + M + ' ? = ' + c, b, [a + c]) : Q('? ' + M + ' ' + b + ' = ' + c, a, [Math.abs(c - b)]); },
     // Multiplicación
     function(){ var t = pick([2, 3, 4, 5]), n = R(1, 10); return S(ord(t, n, X), t * n, [t * (n + 1), t * (n - 1), (t + 1) * n]); },
@@ -1850,8 +1891,8 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
       var m = R(2, 60); return S(m * 100 + ' ' + D + ' 100', m, [m * 10]);
     },
     function(){ var d, q; do { d = R(2, 6); q = R(11, 49); } while (d * q > 99 || d * q < 24); return divQ(d, q, [q + 10, q - 10]); },
-    function(){ var d, q; do { d = R(2, 9); q = R(12, 99); } while (d * q < 100 || d * q > 999); return divQ(d, q, [q + 10, q - 10]); },
-    function(){ return divQ(R(11, 20), R(2, 9)); },
+    function(){ var d, q; do { d = R(2, 7); q = R(15, 80); } while (d * q < 100 || d * q > 560); return divQ(d, q, [q + 10, q - 10]); },
+    function(){ return divQ(R(11, 15), R(2, 9)); },
     function(){ var d = R(2, 9), q = R(2, 9), n = d * q; return Math.random() < 0.5 ? Q(n + ' ' + D + ' ? = ' + q, d, [d + 1, d - 1]) : Q('? ' + D + ' ' + d + ' = ' + q, n, [n + d, n - d, q + d]); },
     // Combinadas
     function(){ var a = R(5, 30), b = R(2, 20), c = R(1, a + b - 1); return S(a + ' + ' + b + ' ' + M + ' ' + c, a + b - c, [a + b + c]); },
@@ -1859,7 +1900,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     function(){ var a = R(1, 20), b = R(2, 9), c = R(2, 9); return S(a + ' + ' + b + ' ' + X + ' ' + c, a + b * c, [(a + b) * c]); },
     function(){ var a = R(2, 9), b = R(3, 9), c = R(1, b - 1); return S(a + ' ' + X + ' ' + b + ' ' + M + ' ' + c, a * b - c, [a * (b - c)]); },
     function(){ var b = R(2, 6), c = R(2, 6), a = R(b * c + 1, b * c + 30); return S(a + ' ' + M + ' ' + b + ' ' + X + ' ' + c, a - b * c, [(a - b) * c]); },
-    function(){ var d = R(2, 9), q = R(2, 9), c = R(1, 20); var n = d * q; return S(n + ' ' + D + ' ' + d + ' + ' + c, q + c, n % (d + c) === 0 ? [n / (d + c)] : []); },
+    function(){ var d = R(2, 9), q = R(2, 9), c = R(1, 12); var n = d * q; return S(n + ' ' + D + ' ' + d + ' + ' + c, q + c, n % (d + c) === 0 ? [n / (d + c)] : []); },
     function(){ var a = R(1, 9), b = R(1, 9), c = R(2, 9); return S('(' + a + ' + ' + b + ') ' + X + ' ' + c, (a + b) * c, [a + b * c]); },
     function(){ var a = R(2, 9), b = R(4, 15), c = R(1, b - 1); return S(a + ' ' + X + ' (' + b + ' ' + M + ' ' + c + ')', a * (b - c), [a * b - c]); },
     function(){ var a = R(2, 9), b = R(2, 9), c = R(2, 9), d = R(2, 9); return S(a + ' ' + X + ' ' + b + ' + ' + c + ' ' + X + ' ' + d, a * b + c * d, [(a * b + c) * d]); },
@@ -2754,7 +2795,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
   });
 
   // ---------- Pantallas ----------
-  var SCREENS = ['welcome', 'map', 'level', 'practice', 'postal', 'album', 'gallery', 'cert', 'settings', 'teacher'];
+  var SCREENS = ['welcome', 'map', 'level', 'practice', 'postal', 'album', 'gallery', 'cert', 'settings', 'teacher', 'credits'];
   var current = null;
   function show(id){
     SCREENS.forEach(function(s){ $(s).hidden = s !== id; });
@@ -2861,6 +2902,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
         html += '<button class="node ' + cls + '" type="button" data-lvl="' + l + '" aria-label="' + label + '" style="left:' + nodeX(w * 10 + j).toFixed(2) + '%;top:' + (TOP + j * ROW) + 'px">' + l;
         if (cls === 'done') html += '<span class="flag" aria-hidden="true"></span>';
         if (cls === 'done' && save.skipped[l]) html += '<span class="skipb" aria-hidden="true">atajo</span>';
+        if (GAL_LV.indexOf(l) >= 0 && starsOf(l) < 3) html += '<span class="camb" aria-hidden="true">&#128247;</span>';
         if (cls === 'done') html += '<span class="nstars" aria-hidden="true">' + '★'.repeat(st) + '<span class="off">' + '★'.repeat(3 - st) + '</span></span>';
         if (cls === 'locked') html += '<span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13"><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.6"/></svg></span>';
         html += '</button>';
@@ -2960,6 +3002,9 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     if (save.sound) sfx.tap();
   });
   $('settingsBtn').addEventListener('click', function(){ go('settings'); openSettings(); });
+  $('creditsBtn').addEventListener('click', function(){ sfx.tap(); go('credits'); });
+  $('certCredits').addEventListener('click', function(){ sfx.tap(); go('credits'); });
+  $('credBack').addEventListener('click', backToMap);
 
   // ---------- Portada ----------
   function openWelcome(){
@@ -2984,7 +3029,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
       b.querySelector('.sub').textContent = st.done >= 50 ? 'Completó la ruta · ★ ' + st.stars : 'Va en el nivel ' + (st.done + 1) + ' · ★ ' + st.stars;
       b.addEventListener('click', function(){
         sfx.tap(); useProfile(p.id); applyMotion(); openMap();
-        if (!save.cx[0]) openComic(0, { end: '¡Vamos!' });
+        if (!save.cx[0]) openComic(0, { end: '¡Vamos!', must: true });
       });
       box.appendChild(b);
     });
@@ -3005,7 +3050,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     }
     save.name = v; persist();
     openMap();
-    openComic(0, { end: '¡Vamos!' });
+    openComic(0, { end: '¡Vamos!', must: true });
   });
 
   // ---------- Nivel ----------
@@ -4444,7 +4489,16 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
 
   function setLevelColor(l){ $('level').style.setProperty('--wc', worldOf(l).color); }
 
+  // Si el estudiante no ha visto el cómic de este tramo (por ejemplo, se fue al mapa), se lo muestra antes de jugar
+  function needComic(l, test){
+    if (test || TEST) return false;
+    var ci = Math.floor((l - 1) / 10);
+    if (save.cx[ci]) return false;
+    openComic(ci, { must: true, end: ci ? 'Seguir al nivel ' + l : '¡Vamos!', onEnd: function(){ show('level'); openLevel(l, false); } });
+    return true;
+  }
   function openLevel(l, test){
+    if (needComic(l, test)) return;
     leaveRun();
     run = { lvl: l, test: !!test, qs: [], i: 0, results: [], answered: false, chosen: null };
     var w = worldOf(l);
@@ -4691,7 +4745,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
       var pIdx = l / 10;
       addBtn('Seguir la historia', 'gold big', function(){
         leaveRun();
-        openComic(pIdx, { end: pIdx === 5 ? 'Ver mi última postal' : 'Ver mi postal', onEnd: function(){ show('postal'); openPostal(pIdx, 'flow'); } });
+        openComic(pIdx, { must: !save.cx[pIdx], end: pIdx === 5 ? 'Ver mi última postal' : 'Ver mi postal', onEnd: function(){ show('postal'); openPostal(pIdx, 'flow'); } });
       });
       addBtn('Ir al mapa', 'ghost', backToMap);
     } else if (passed && l === 50){
@@ -4713,7 +4767,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
       addBtn('Intentar otra vez', 'primary big', function(){ beginRun(); });
       addBtn('Ir al mapa', 'ghost', backToMap);
     }
-    if (galNew) addBtn('Ver mi foto del río', 'ghost', function(){ var n = galCount(); leaveRun(); show('gallery'); openGallery(); openPhoto(n - 1); });
+    if (galNew) addBtn('Ver mi foto del río', 'ghost', function(){ var k = Math.max(0, GAL_LV.indexOf(l)); leaveRun(); show('gallery'); openGallery(); openPhoto(k); });
     if (run.newPh) addBtn(run.newPh > 1 ? 'Ver mis fotos especiales' : 'Ver mi foto especial', 'ghost', function(){ var k = run.lastPh | 0; leaveRun(); show('gallery'); openGallery(); openPhoto(k, true); });
     if (passed){ if (stars === 3) sfx.perfect(); else sfx.win(); } else sfx.lose();
   }
@@ -4959,7 +5013,7 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     if (cx.page < pages.length - 1){ cx.page++; cx.k = 0; cxPageRender(); cxReveal(); return; }
     cxFinish();
   }
-  function cxFinish(){ var fn = cx && cx.onEnd; cxClose(); if (fn) fn(); }
+  function cxFinish(){ var fn = cx && cx.onEnd; if (cx && cx.must && cx.i != null){ save.cx[cx.i] = 1; persist(); } cxClose(); if (fn) fn(); }
   function cxClose(){
     clearInterval(cxTimer); cxTimer = null; cx = null;
     $('cx').hidden = true; $('cxPage').textContent = '';
@@ -4968,11 +5022,13 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
   }
   function openComic(i, opts){
     opts = opts || {};
-    save.cx[i] = 1; persist();
-    cx = { mode: 'read', i: i, ch: CX[i], page: 0, k: 0, n: 0, end: opts.end || 'Listo', onEnd: opts.onEnd || null, typing: false };
+    // obligatorio: sin «Saltar» y no se cierra con atrás; cuenta como visto solo al terminarlo
+    var must = !!opts.must && !TEST;
+    if (!must){ save.cx[i] = 1; persist(); }
+    cx = { mode: 'read', i: i, ch: CX[i], page: 0, k: 0, n: 0, end: opts.end || 'Listo', onEnd: opts.onEnd || null, typing: false, must: must };
     $('cxChap').textContent = 'Capítulo ' + (i + 1);
     $('cxTitle').textContent = CX[i].t;
-    $('cxSkip').hidden = false; $('cxSkip').textContent = 'Saltar';
+    $('cxSkip').hidden = must; $('cxSkip').textContent = 'Saltar';
     $('cx').hidden = false; document.body.classList.add('lx-open');
     cxPageRender(); cxReveal();
     try { musScreen(); } catch (e) {}
@@ -5008,10 +5064,10 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
   }
   $('cxNext').addEventListener('click', function(e){ e.stopPropagation(); cxNext(); });
   $('cxPage').addEventListener('click', function(){ if (cx && cx.mode === 'read') cxNext(); });
-  $('cxSkip').addEventListener('click', function(){ if (cx && cx.mode === 'read') cxFinish(); });
+  $('cxSkip').addEventListener('click', function(){ if (cx && cx.mode === 'read' && !cx.must) cxFinish(); });
   document.addEventListener('keydown', function(e){
     if ($('cx').hidden || !$('lx').hidden) return;
-    if (e.key === 'Escape'){ if (cx && cx.mode === 'read') cxFinish(); else cxClose(); }
+    if (e.key === 'Escape'){ if (cx && cx.must) return; if (cx && cx.mode === 'read') cxFinish(); else cxClose(); }
     else if (e.key === 'ArrowRight' && cx && cx.mode === 'read'){ e.preventDefault(); cxNext(); }
   });
   window.addEventListener('resize', cxLayout);
@@ -5022,23 +5078,25 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
   var GAL = [['G01', 'Atardecer en el río'], ['G02', 'El sol se esconde detrás del monte'], ['G03', 'Nubes rosadas sobre la selva'], ['G04', 'El río al caer la tarde'],
     ['G05', 'El cielo pintado en el agua'], ['G06', 'Pescando al final de la tarde'], ['G07', 'El río quieto como un espejo'], ['G08', 'Una tarde de sol en la orilla'],
     ['G09', 'La luna sobre la selva'], ['G10', 'Viajando por el río'], ['G11', 'Agua clara entre las piedras'], ['G12', 'Amanece entre las palmas']];
+  // Cada foto del río está en un nivel fijo, repartidas por los 5 tramos: se gana con 3 estrellas en ese nivel
+  var GAL_LV = [4, 8, 12, 16, 20, 25, 29, 33, 37, 42, 46, 50];
+  function galOpen(i){ return TEST || starsOf(GAL_LV[i]) === 3; }
   function galCount(){
-    if (TEST) return GAL.length;
-    var n = 0; for (var l = 1; l <= 50; l++) if (starsOf(l) === 3) n++;
-    return Math.min(GAL.length, n);
+    var n = 0; for (var i = 0; i < GAL.length; i++) if (galOpen(i)) n++;
+    return n;
   }
   function openGallery(){
     var g = $('galGrid'), n = galCount(); g.textContent = '';
     var R = save.racha || { a: 0, b: 0 };
     var head = function(t, sub){ var h = document.createElement('div'); h.className = 'gal-head'; h.innerHTML = '<b></b><span></span>'; h.firstChild.textContent = t; h.lastChild.textContent = sub; g.appendChild(h); };
-    head('Fotos del río', 'Se ganan con 3 estrellas en un nivel · ' + n + ' de ' + GAL.length);
+    head('Fotos del río', 'Busca la cámara en el mapa: 3 estrellas en ese nivel revelan la foto · ' + n + ' de ' + GAL.length);
     GAL.forEach(function(it, i){
-      var open = i < n, b = document.createElement('button'); b.type = 'button'; b.className = 'gal-item' + (open ? '' : ' locked');
+      var open = galOpen(i), b = document.createElement('button'); b.type = 'button'; b.className = 'gal-item' + (open ? '' : ' locked');
       b.innerHTML = '<span class="gi-img">' + (open ? '' : '<span class="ai-lock">' + LOCK_SVG + '</span>') + '</span><b></b>';
       if (open) b.firstChild.style.backgroundImage = 'url(' + IMG[it[0]] + ')';
-      b.querySelector('b').textContent = open ? it[1] : 'Foto ' + (i + 1);
-      b.setAttribute('aria-label', open ? it[1] : 'Foto ' + (i + 1) + ', bloqueada');
-      b.addEventListener('click', function(){ if (open){ sfx.tap(); openPhoto(i); } else { sfx.bad(); toast('Saca 3 estrellas en otro nivel para revelar esta foto.'); } });
+      b.querySelector('b').textContent = open ? it[1] : 'Foto del nivel ' + GAL_LV[i];
+      b.setAttribute('aria-label', open ? it[1] : 'Foto del nivel ' + GAL_LV[i] + ', bloqueada');
+      b.addEventListener('click', function(){ if (open){ sfx.tap(); openPhoto(i); } else { sfx.bad(); toast('Saca 3 estrellas en el nivel ' + GAL_LV[i] + ' para revelar esta foto.'); } });
       g.appendChild(b);
     });
     [['Fotos BONUS', 'Responde 7 seguidas en un nivel sin equivocarte', 0, TEST ? 7 : R.a], ['Fotos doradas · SÚPER BONUS', 'Responde las 10 de un nivel sin equivocarte', 7, TEST ? 7 : R.b]].forEach(function(sec){
@@ -5594,9 +5652,9 @@ body.still .bn-monkey,body.still .bn-bird .wg,body.still .ar-bonus.canoe .bn-tag
     if (!$('galView').hidden){ $('galView').hidden = true; return; }
     if (!$('codeView').hidden){ $('codeView').hidden = true; return; }
     if (!$('lx').hidden){ closeLesson(); return; }
-    if (!$('cx').hidden){ if (cx && cx.mode === 'read') cxFinish(); else cxClose(); return; }
+    if (!$('cx').hidden){ if (cx && cx.must){ toast('Lee la historia hasta el final para seguir el viaje.'); return; } if (cx && cx.mode === 'read') cxFinish(); else cxClose(); return; }
     if (current === 'level'){ $('exitBtn').click(); return; }
-    var btn = { postal: 'postalBack', album: 'albumBack', gallery: 'galBack', cert: 'certBack', settings: 'setBack', teacher: 'teachBack', practice: 'prBack' }[current];
+    var btn = { postal: 'postalBack', album: 'albumBack', gallery: 'galBack', cert: 'certBack', settings: 'setBack', teacher: 'teachBack', practice: 'prBack', credits: 'credBack' }[current];
     if (btn){ $(btn).click(); return; }
     if (current === 'map'){ newMode = false; openWelcome(); return; }
     toast('Para salir del juego usa el botón de inicio del celular.');
